@@ -2,9 +2,15 @@
 
 var firebase = require("firebase");
 firebase.initializeApp({
-    "appName": "Quiver Two Node Client Demo",
-    "serviceAccount": "./service-account.json",
-    "authDomain": "quiver-two.firebaseapp.com",
-    "databaseURL": "https://quiver-two.firebaseio.com/",
-    "storageBucket": "quiver-two.appspot.com"
+    "appName": "MailBot",
+//    "serviceAccount": "./service-account.json",
+    "databaseURL": "https://newagent-f4967.firebaseio.com/"
 });
+
+var ref = firebase.app().database().ref();
+
+ref.on("child_changed", function(snapshot) {
+    console.log(snapshot.val());
+  }, function (errorObject) {
+    console.log("The read failed: " + errorObject.code);
+  });
