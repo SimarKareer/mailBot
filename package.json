@@ -17,6 +17,8 @@
   },
   "homepage": "https://github.com/SimarKareer/mailBot#readme",
   "dependencies": {
-    "firebase": "^5.2.0"
+    "eslint": "^5.0.1",
+    "firebase": "^5.2.0",
+    "wpilib-nt-client": "^1.7.1"
   }
 }
