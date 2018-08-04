@@ -19,6 +19,8 @@
   "dependencies": {
     "eslint": "^5.0.1",
     "firebase": "^5.2.0",
+    "firebase-admin": "^5.13.1",
+    "firebase-functions": "^2.0.2",
     "wpilib-nt-client": "^1.7.1"
   }
 }

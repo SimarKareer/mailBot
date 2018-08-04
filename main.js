@@ -2,25 +2,28 @@
 
 const ntClient = require('wpilib-nt-client');
 const client = new ntClient.Client()
+const admin = require('firebase-admin');
+const functions = require('firebase-admin');
+var serviceAccount = require('../newagent-f4967-f06e512b9e8a.json');
 
+/*
 client.start((isConnected, err) => {
     // Displays the error and the state of connection
     console.log({ isConnected, err });
 }, 'roborio-2729.local');
+*/
 
-var firebase = require("firebase");
-firebase.initializeApp({
-    "appName": "MailBot",
-    //    "serviceAccount": "./service-account.json",
-    "databaseURL": "https://newagent-f4967.firebaseio.com/"
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount)
 });
 
-var ref = firebase.app().database().ref();
+var db = admin.firestore();
 
-ref.on("child_changed", function (snapshot) {
-    //client.Assign(snapshot.val(), "unsorted", false) //this bool might need to be true
-    console.log(snapshot.val());
-}, function (errorObject) {
-    console.log("The read failed: " + errorObject.code);
+var collec = db.collection('moveRequests');
+
+var observer = collec.onSnapshot(docSnapshot => {
+  console.log(`Received doc snapshot: ${docSnapshot}`);
+  // ...
+}, err => {
+  console.log(`Encountered error: ${err}`);
 });
-
